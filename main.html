@@ -160,3 +160,30 @@ body {
 }
 .history-item q { font-style: italic; color: var(--text); }
 .history-item .history-reply {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.suggestions {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.suggestions-label { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 0.75rem 0; }
+.suggestion-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.chip:hover {
+  border-color: var(--accent);
+  background: rgba(201, 162, 39, 0.08);
