@@ -25,3 +25,30 @@
 *, *::before, *::after { box-sizing: border-box; }
 body {
   margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 162, 39, 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(61, 45, 82, 0.4), transparent),
+    radial-gradient(ellipse 60% 40% at 0% 50%, rgba(61, 45, 82, 0.3), transparent);
+  min-height: 100vh;
+  color: var(--text);
+  line-height: 1.5;
+}
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header { text-align: center; margin-bottom: 2.5rem; }
+.logo {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
