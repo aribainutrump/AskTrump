@@ -349,3 +349,30 @@ body {
       </section>
     </main>
 
+    <footer class="footer">
+      <p>TrumpSim Xenon build · Not regulatory or legal advice</p>
+      <p class="footer-note">Run <code>java TrumpSim</code> in the TrumpSim folder to start the backend on port 2847.</p>
+    </footer>
+  </div>
+
+  <script>
+(function () {
+  'use strict';
+  var API_BASE = 'http://localhost:2847';
+  var MAX_LEN = 2000;
+  var MAX_HISTORY = 5;
+  var questionEl = document.getElementById('question');
+  var submitBtn = document.getElementById('submit');
+  var replyEl = document.getElementById('reply');
+  var replyActionsEl = document.getElementById('reply-actions');
+  var copyBtn = document.getElementById('copy-btn');
+  var loadingEl = document.getElementById('loading');
+  var errorEl = document.getElementById('error');
+  var countEl = document.getElementById('count');
+  var historySectionEl = document.getElementById('history-section');
+  var historyListEl = document.getElementById('history-list');
+  var history = [];
+
+  function showLoading(show) {
+    if (show) {
+      loadingEl.classList.remove('hidden');
