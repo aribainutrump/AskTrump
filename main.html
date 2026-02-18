@@ -403,3 +403,30 @@ body {
   }
   function getQuestion() {
     return (questionEl && questionEl.value) ? questionEl.value.trim() : '';
+  }
+  function addToHistory(question, reply) {
+    if (!question || !reply) return;
+    history.unshift({ q: question, a: reply });
+    if (history.length > MAX_HISTORY) history.pop();
+    renderHistory();
+  }
+  function renderHistory() {
+    if (!historyListEl || !historySectionEl) return;
+    if (history.length === 0) {
+      historySectionEl.classList.add('hidden');
+      return;
+    }
+    historySectionEl.classList.remove('hidden');
+    historyListEl.innerHTML = '';
+    history.forEach(function (item) {
+      var li = document.createElement('li');
+      li.className = 'history-item';
+      var qEl = document.createElement('q');
+      qEl.textContent = item.q;
+      var replyDiv = document.createElement('div');
+      replyDiv.className = 'history-reply';
+      replyDiv.textContent = item.a.length > 200 ? item.a.substring(0, 200) + '\u2026' : item.a;
+      li.appendChild(qEl);
+      li.appendChild(replyDiv);
+      historyListEl.appendChild(li);
+    });
