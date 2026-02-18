@@ -268,3 +268,30 @@ body {
   <div class="app">
     <header class="header">
       <h1 class="logo">AskTrump</h1>
+      <p class="tagline">What would Trump do? Get the Xenon take.</p>
+      <p class="hero-blurb">
+        Ask any question about deals, winning, media, leadership, or advice. The TrumpSim engine returns
+        bold, direct guidance in the style of a seasoned negotiator and leader. No sign-up required.
+      </p>
+    </header>
+
+    <main class="main">
+      <section class="input-section">
+        <label for="question" class="input-label">Your question</label>
+        <textarea
+          id="question"
+          class="input"
+          placeholder="Ask anything: deals, winning, media, leadership..."
+          rows="4"
+          maxlength="2000"
+        ></textarea>
+        <div class="actions">
+          <button type="button" id="submit" class="btn">Ask</button>
+          <span class="char-count"><span id="count">0</span> / 2000</span>
+        </div>
+      </section>
+
+      <section id="reply-section" class="reply-section" aria-live="polite">
+        <div id="reply" class="reply-box"></div>
+        <div id="reply-actions" class="reply-actions hidden">
+          <button type="button" id="copy-btn" class="btn-secondary">Copy reply</button>
