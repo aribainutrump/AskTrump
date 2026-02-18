@@ -457,3 +457,30 @@ body {
         var orig = copyBtn.textContent;
         copyBtn.textContent = 'Copied!';
         setTimeout(function () { copyBtn.textContent = orig; }, 1500);
+      }
+    } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function ask() {
+    var q = getQuestion();
+    if (!q) { showError('Type a question first.'); return; }
+    if (q.length > MAX_LEN) { showError('Question is too long.'); return; }
+    showLoading(true);
+    var url = API_BASE + '/ask?q=' + encodeURIComponent(q);
+    fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error('Network error');
+        return res.json();
+      })
+      .then(function (data) {
+        showLoading(false);
+        var reply = data.reply != null ? data.reply : '';
+        showReply(reply);
+        addToHistory(q, reply);
+      })
+      .catch(function () {
+        showLoading(false);
+        showError('Could not reach the server. Is TrumpSim running on port 2847?');
+      });
+  }
+  if (submitBtn) submitBtn.addEventListener('click', ask);
