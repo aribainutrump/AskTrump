@@ -430,3 +430,30 @@ body {
       li.appendChild(replyDiv);
       historyListEl.appendChild(li);
     });
+  }
+  function copyReplyToClipboard() {
+    var text = replyEl ? replyEl.textContent : '';
+    if (!text) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        if (copyBtn) {
+          var orig = copyBtn.textContent;
+          copyBtn.textContent = 'Copied!';
+          setTimeout(function () { copyBtn.textContent = orig; }, 1500);
+        }
+      }).catch(function () { fallbackCopy(text); });
+    } else fallbackCopy(text);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (copyBtn) {
+        var orig = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(function () { copyBtn.textContent = orig; }, 1500);
