@@ -484,3 +484,25 @@ body {
       });
   }
   if (submitBtn) submitBtn.addEventListener('click', ask);
+  if (copyBtn) copyBtn.addEventListener('click', copyReplyToClipboard);
+  if (questionEl) {
+    questionEl.addEventListener('input', updateCharCount);
+    questionEl.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ask(); }
+    });
+  }
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var q = this.getAttribute('data-q');
+      if (q && questionEl) {
+        questionEl.value = q;
+        updateCharCount();
+        ask();
+      }
+    });
+  });
+  updateCharCount();
+})();
+  </script>
+</body>
+</html>
