@@ -376,3 +376,30 @@ body {
   function showLoading(show) {
     if (show) {
       loadingEl.classList.remove('hidden');
+      errorEl.classList.add('hidden');
+      replyEl.textContent = '';
+      replyEl.classList.add('hidden');
+      if (replyActionsEl) replyActionsEl.classList.add('hidden');
+    } else {
+      loadingEl.classList.add('hidden');
+    }
+  }
+  function showError(msg) {
+    errorEl.textContent = msg || 'Something went wrong. Try again.';
+    errorEl.classList.remove('hidden');
+    replyEl.classList.add('hidden');
+    if (replyActionsEl) replyActionsEl.classList.add('hidden');
+  }
+  function showReply(text) {
+    errorEl.classList.add('hidden');
+    replyEl.textContent = text || '';
+    replyEl.classList.remove('hidden');
+    if (replyActionsEl && text) replyActionsEl.classList.remove('hidden');
+    else if (replyActionsEl) replyActionsEl.classList.add('hidden');
+  }
+  function updateCharCount() {
+    var len = (questionEl && questionEl.value) ? questionEl.value.length : 0;
+    if (countEl) countEl.textContent = len;
+  }
+  function getQuestion() {
+    return (questionEl && questionEl.value) ? questionEl.value.trim() : '';
